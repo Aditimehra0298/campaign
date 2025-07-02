@@ -30,10 +30,10 @@ import {
   MessageCircle,
   PhoneCall
 } from 'lucide-react';
-import logo1 from './assets/logo1.png';
-import logo2 from './assets/logo2.png';
-import logo3 from './assets/logo3.png';
-import logo4 from './assets/logo4.png';
+import logo1 from './assets/logo4.png';
+import logo2 from './assets/logo3.png';
+import logo3 from './assets/logo2.png';
+import logo4 from './assets/logo1.png';
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -273,7 +273,7 @@ function App() {
                     >
                       <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                       <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 mr-2 animate-pulse" />
-                      Exemplar Global Accredited
+                      Exemplar Global Accredited, USA
                     </a>
                     
                     {/* Accreditation Popup */}
@@ -384,7 +384,7 @@ function App() {
                       <div className="bg-gradient-to-r from-teal-400 to-cyan-500 p-1 rounded-full">
                         <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                       </div>
-                      <p className="text-white text-sm sm:text-base">Smart Pathway to 1-Day Exemplar Global-Accredited Lead Verifier Certification</p>
+                      <p className="text-white text-sm sm:text-base">Smart Pathway to 1-Day Exemplar Global-Accredited, USA Lead Verifier Certification</p>
                     </div>
                   </div>
                 </div>
@@ -442,7 +442,7 @@ function App() {
                     <Bot className="h-2 w-2 text-white animate-pulse" />
                   </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Exemplar Global + AI Accredited</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Exemplar Global Accredited, USA + AI Enhanced Learning </h3>
                 <p className="text-gray-600 text-sm sm:text-base">
                   Certified under ISO/IEC 17024:2012 by International Accreditation Service (IAS) with AI-powered learning modules, ensuring global recognition.
                 </p>
@@ -546,7 +546,7 @@ function App() {
                 <div className="border-l-4 border-gradient-to-b from-[#628F8E] to-purple-500 pl-4 sm:pl-6 bg-gradient-to-r from-gray-50 to-white p-4 rounded-r-lg">
                   <div className="flex items-center space-x-3 mb-4">
                     <BarChart3 className="h-6 w-6 text-[#628F8E] animate-pulse" />
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Case Studies</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Live Case Studies</h3>
                   </div>
                   <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                     Practice with industry-driven examples developed from on-field experience and enhanced with AI insights. Work with actual data 
@@ -710,7 +710,7 @@ function App() {
             <div className="text-center mb-12 sm:mb-16">
               <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
                 <Star className="h-4 mr-2 animate-pulse" />
-                Special AI-Enhanced Pricing
+                Special Pricing
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Investment & Early Bird Offers</h2>
               <p className="text-lg sm:text-xl text-gray-600">
@@ -747,7 +747,7 @@ function App() {
                   <div className="pt-4 border-t">
                     <p className="text-xs sm:text-sm text-gray-600 flex items-center justify-center">
                       <Zap className="h-4 w-4 mr-2 text-yellow-500 animate-pulse" />
-                      Limited time AI-enhanced offer - secure your early bird pricing today!
+                      Limited time offer - secure your early bird pricing today!
                     </p>
                   </div>
                 </div>
@@ -805,14 +805,14 @@ function App() {
                   <div className="bg-gradient-to-r from-[#628F8E] to-green-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Database className="h-6 w-6 text-white" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Smart Case Study Datasets</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Smart and Live  Case Study Datasets</h4>
                   <p className="text-gray-600 text-xs sm:text-sm">Real-world data enhanced with AI analysis for hands-on practice</p>
                 </div>
                 <div className="text-center group hover:bg-white p-4 rounded-lg transition-all sm:col-span-2 lg:col-span-1">
                   <div className="bg-gradient-to-r from-[#628F8E] to-purple-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Award className="h-6 w-6 text-white" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">AI-Verified Certification Fee</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Verified Certification Fee</h4>
                   <p className="text-gray-600 text-xs sm:text-sm">Exemplar Global certification with AI learning validation included</p>
                 </div>
               </div>
@@ -870,7 +870,7 @@ function App() {
                         Course Schedule
                         <Brain className="h-3 w-3 ml-2 text-purple-500 animate-pulse" />
                       </h3>
-                      <p className="text-gray-600 text-sm sm:text-base">Next AI-enhanced batch starts soon - secure your spot!</p>
+                      <p className="text-gray-600 text-sm sm:text-base">Next Smart Learning batch starts soon - secure your spot!</p>
                     </div>
                   </div>
                 </div>
