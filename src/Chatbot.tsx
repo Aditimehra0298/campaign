@@ -41,8 +41,8 @@ export default function Chatbot() {
         setInput('');
         if (step + 1 === steps.length) {
           setDone(true);
-          // Send data to Google Sheets
-          fetch('https://script.google.com/macros/s/AKfycbxd_DG0BXgk_yBEwBSq8krNR-ozqzVueyVxNiPAMA-l0qObMfSHxjVXqrWXs1Su5cCY/exec', {
+          // Send data to Google Sheets via Netlify function
+          fetch('/.netlify/functions/submit-form', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -52,6 +52,12 @@ export default function Chatbot() {
               profession: answers.profession,
               location: answers.location
             })
+          })
+          .then(response => {
+            console.log('Form submitted successfully');
+          })
+          .catch(error => {
+            console.error('Error submitting form:', error);
           });
         }
       }, 500);
