@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
-
 exports.handler = async function(event, context) {
+  // Dynamic import for node-fetch
+  const fetch = (await import('node-fetch')).default;
   // Handle CORS
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -43,13 +43,14 @@ exports.handler = async function(event, context) {
       body: result
     };
   } catch (error) {
+    console.error('Function error:', error);
     return {
       statusCode: 500,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'text/plain'
       },
-      body: 'Error submitting form'
+      body: 'Error submitting form: ' + error.message
     };
   }
 }; 
