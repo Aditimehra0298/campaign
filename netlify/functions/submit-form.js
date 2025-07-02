@@ -1,6 +1,6 @@
+const https = require('https');
+
 exports.handler = async function(event, context) {
-  // Dynamic import for node-fetch
-  const fetch = (await import('node-fetch')).default;
   // Handle CORS
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -24,15 +24,37 @@ exports.handler = async function(event, context) {
   try {
     const data = JSON.parse(event.body);
     
-    const response = await fetch('https://script.google.com/macros/s/AKfycbx084B3L6iJjCo8MYBmAlA38UoXQmCHhgsxBq0EndMxYNemOUTsAiJqnm3bECH4qQpm/exec', {
+    // Use https module instead of fetch
+    const postData = JSON.stringify(data);
+    
+    const options = {
+      hostname: 'script.google.com',
+      path: '/macros/s/AKfycbx084B3L6iJjCo8MYBmAlA38UoXQmCHhgsxBq0EndMxYNemOUTsAiJqnm3bECH4qQpm/exec',
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    };
 
-    const result = await response.text();
+    const result = await new Promise((resolve, reject) => {
+      const req = https.request(options, (res) => {
+        let responseData = '';
+        res.on('data', (chunk) => {
+          responseData += chunk;
+        });
+        res.on('end', () => {
+          resolve(responseData);
+        });
+      });
+
+      req.on('error', (error) => {
+        reject(error);
+      });
+
+      req.write(postData);
+      req.end();
+    });
 
     return {
       statusCode: 200,
