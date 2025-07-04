@@ -343,7 +343,7 @@ function App() {
                   >
                     <PlayCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                     <Zap className="h-4 w-4 sm:h-5 sm:w-5 mr-2 animate-pulse" />
-                    Register Here - Early Bird 30% off
+                    Register Here - Early Bird 30% Off
                   </a>
                   <button
                     className="border-2 border-white/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/10 backdrop-blur-sm transition-all flex items-center justify-center text-sm sm:text-base"
