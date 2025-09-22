@@ -35,8 +35,6 @@ import logo2 from './assets/logo3.png';
 import logo3 from './assets/logo2.png';
 import logo4 from './assets/logo1.png';
 
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import emailjs from 'emailjs-com';
 
 function App() {
@@ -98,29 +96,33 @@ function App() {
     });
   };
 
-  // Helper to convert image URL to base64 data URL
-  const toDataURL = (url: string): Promise<string> =>
-    fetch(url)
-      .then(response => response.blob())
-      .then(blob => new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      }));
 
   // Brochure download handler
   const handleDownloadBrochure = async () => {
     try {
-      const doc = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1085, 768] });
-      const img1 = await toDataURL('/brochure1.png');
-      const img2 = await toDataURL('/brochure2.png');
-      doc.addImage(img1 as string, 'PNG', 0, 0, 1085, 768);
-      doc.addPage([1085, 768], 'landscape');
-      doc.addImage(img2 as string, 'PNG', 0, 0, 1085, 768);
-      doc.save('GHG-Lead-Accountant-Brochure.pdf');
+      // Fetch the PDF file
+      const response = await fetch('/GHG-LA-September.pdf');
+      if (!response.ok) {
+        throw new Error('Failed to fetch PDF');
+      }
+      
+      // Convert to blob
+      const blob = await response.blob();
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'GHG-Lead-Accountant-Brochure.pdf';
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
     } catch (err) {
-      alert('Failed to generate brochure. Please check that both images are in the public folder and named correctly as brochure1.png and brochure2.png.');
+      alert('Failed to download brochure. Please try again.');
+      console.error('Brochure download error:', err);
     }
   };
 
@@ -160,7 +162,15 @@ function App() {
             <div className="flex items-center space-x-4">
               {/* Logos Row */}
               <div className="flex items-center space-x-2">
-                <img src={logo1} alt="Logo 1" className="h-10 w-10 object-contain" />
+                <a 
+                  href="https://www.sftrainings.org/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity duration-200"
+                  aria-label="Visit SF Trainings website"
+                >
+                  <img src={logo1} alt="SF Trainings Logo" className="h-10 w-10 object-contain" />
+                </a>
                 <img src={logo2} alt="Logo 2" className="h-10 w-10 object-contain" />
                 <img src={logo3} alt="Logo 3" className="h-10 w-10 object-contain" />
                 <img src={logo4} alt="Logo 4" className="h-10 w-10 object-contain" />
@@ -343,7 +353,7 @@ function App() {
                   >
                     <PlayCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                     <Zap className="h-4 w-4 sm:h-5 sm:w-5 mr-2 animate-pulse" />
-                    Register Here - Early Bird 30% Off
+                    Register Here - Early Bird 20% Off
                   </a>
                   <button
                     className="border-2 border-white/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/10 backdrop-blur-sm transition-all flex items-center justify-center text-sm sm:text-base"
@@ -726,7 +736,7 @@ function App() {
                     <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 mr-2 animate-pulse" />
                     <span>Early Bird Special</span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">30% Discount</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">20% Discount</h3>
                   <p className="text-gray-600 text-sm sm:text-base">Secure your spot with a 30% deposit</p>
                 </div>
                 <div className="space-y-3 sm:space-y-4">
@@ -735,14 +745,14 @@ function App() {
                       <Calendar className="h-4 w-4 mr-2 text-[#628F8E]" />
                       Deadline:
                     </span>
-                    <span className="font-semibold text-[#628F8E] text-sm sm:text-base">10th July</span>
+                    <span className="font-semibold text-[#628F8E] text-sm sm:text-base">15th October</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
                     <span className="text-gray-700 text-sm sm:text-base flex items-center">
                       <Target className="h-4 w-4 mr-2 text-[#628F8E]" />
                       Deposit Required:
                     </span>
-                    <span className="font-semibold text-[#628F8E] text-sm sm:text-base">30% of course fee</span>
+                    <span className="font-semibold text-[#628F8E] text-sm sm:text-base">20% of course fee</span>
                   </div>
                   <div className="pt-4 border-t">
                     <p className="text-xs sm:text-sm text-gray-600 flex items-center justify-center">
@@ -845,6 +855,7 @@ function App() {
                         <Sparkles className="h-3 w-3 ml-2 text-yellow-500 animate-pulse" />
                       </h3>
                       <p className="text-gray-600 text-sm sm:text-base">info@sftrainings.org</p>
+                      <p className="text-gray-600 text-sm sm:text-base">bdm@sftrainings.org</p>
                     </div>
                   </div>
                   
@@ -857,7 +868,7 @@ function App() {
                         Call Us
                         <Activity className="h-3 w-3 ml-2 text-green-500 animate-pulse" />
                       </h3>
-                      <p className="text-gray-600 text-sm sm:text-base">+91 82191-60625</p>
+                      <p className="text-gray-600 text-sm sm:text-base">+91 9056244487</p> 
                     </div>
                   </div>
                   
@@ -1060,7 +1071,8 @@ function App() {
                     <p className="flex items-center mt-1"><MapPin className="h-3 w-3 mr-2" />616, Corporate Way Suite 2, 6015 Valley Cottage NY 10989</p>
                   </div>
                   {/* Email */}
-                  <p className="flex items-center mt-3"><Mail className="h-3 w-3 mr-2" />info@ghgacademy.com</p>
+                  <p className="flex items-center mt-3"><Mail className="h-3 w-3 mr-2" />info@sftrainings.org</p>
+                  <p className="flex items-center mt-3"><Mail className="h-3 w-3 mr-2" />bdm@sftrainings.org</p>
                   {/* Support Hours */}
                   <p className="flex items-center"><Clock className="h-3 w-3 mr-2" />Support: Mon-Fri 9AM-6PM</p>
                 </div>
@@ -1103,7 +1115,7 @@ function App() {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/919722001132?text=Hi%20Devang%20sir%2C%20I'm%20interested%20in%20the%20GHG%20Lead%20Accountant%20course.%20Can%20you%20provide%20more%20information%3F"
+          href="https://wa.me/919056244487?text=Hi%20Piyush%20sir%2C%20I'm%20interested%20in%20the%20GHG%20Lead%20Accountant%20course.%20Can%20you%20provide%20more%20information%3F"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-3 sm:p-4 transition-all duration-300 hover:scale-110 hover:shadow-xl flex items-center justify-center"
@@ -1116,7 +1128,7 @@ function App() {
         
         {/* Phone Button */}
         <a
-          href="tel:+919876543210"
+          href="tel:+919056244487"
           className="bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg p-3 sm:p-4 transition-all duration-300 hover:scale-110 hover:shadow-xl flex items-center justify-center"
           aria-label="Call us"
         >
