@@ -98,28 +98,16 @@ function App() {
 
 
   // Brochure download handler
-  const handleDownloadBrochure = async () => {
+  const handleDownloadBrochure = () => {
     try {
-      // Fetch the PDF file
-      const response = await fetch('/GHG-LA-September.pdf');
-      if (!response.ok) {
-        throw new Error('Failed to fetch PDF');
-      }
-      
-      // Convert to blob
-      const blob = await response.blob();
-      
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
+      // Create a temporary link element to download the PDF
       const link = document.createElement('a');
-      link.href = url;
+      link.href = '/GHG-LA-September.pdf';
       link.download = 'GHG-Lead-Accountant-Brochure.pdf';
+      link.target = '_blank';
       document.body.appendChild(link);
       link.click();
-      
-      // Cleanup
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
     } catch (err) {
       alert('Failed to download brochure. Please try again.');
       console.error('Brochure download error:', err);
