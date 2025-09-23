@@ -733,7 +733,7 @@ function App() {
                       <Calendar className="h-4 w-4 mr-2 text-[#628F8E]" />
                       Deadline:
                     </span>
-                    <span className="font-semibold text-[#628F8E] text-sm sm:text-base">15th October</span>
+                    <span className="font-semibold text-[#628F8E] text-sm sm:text-base">Secure your seat before the 10-day deadline.</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
                     <span className="text-gray-700 text-sm sm:text-base flex items-center">
